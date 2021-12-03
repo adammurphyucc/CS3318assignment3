@@ -5,6 +5,7 @@ public class EmailValidator {
     private static boolean alpha;
     private static boolean wrongAlpha;
     private static boolean period;
+    private static boolean domain;
 
 
 
@@ -29,7 +30,11 @@ public class EmailValidator {
                 break;
             }
         }
-        return period && alpha && !wrongAlpha && atCounter==1;
+        String afterPeriod = afterAt.substring(afterAt.lastIndexOf(".")+1);
+        if (afterPeriod.length() >= 2){
+            domain = true;
+        }
+        return domain && period && alpha && !wrongAlpha && atCounter==1;
     }
 
 }
