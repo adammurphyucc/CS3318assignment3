@@ -4,6 +4,7 @@ public class PasswordValidator {
     public static boolean len;
     public static boolean alpha;
     public static boolean numeric;
+    public static boolean special;
 
 
     public static boolean isValid(String userPassword) {
@@ -24,8 +25,15 @@ public class PasswordValidator {
                 break;
             }
         }
+        for (int i = 0; i < userPassword.length(); i++) {
+            char c = userPassword.charAt(i);
+            if (((c == '*') || (c == '^')|| (c == '&')|| (c == '@')|| (c == '!'))) {
+                special = true;
+                break;
+            }
+        }
 
-        return len && alpha && numeric;
+        return len && alpha && numeric && special;
     }
 
 }
