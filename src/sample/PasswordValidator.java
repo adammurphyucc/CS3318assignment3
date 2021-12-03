@@ -3,7 +3,7 @@ package sample;
 public class PasswordValidator {
     public static boolean len;
     public static boolean alpha;
-
+    public static boolean numeric;
 
 
     public static boolean isValid(String userPassword) {
@@ -17,8 +17,15 @@ public class PasswordValidator {
                 break;
             }
         }
+        for (int i = 0; i < userPassword.length(); i++) {
+            char c = userPassword.charAt(i);
+            if (((c >= '0') && (c <= '9'))) {
+                numeric = true;
+                break;
+            }
+        }
 
-        return len && alpha;
+        return len && alpha && numeric;
     }
 
 }
