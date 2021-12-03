@@ -4,6 +4,7 @@ public class EmailValidator {
     private static Integer atCounter = 0;
     private static boolean alpha;
     private static boolean wrongAlpha;
+    private static boolean period;
 
 
 
@@ -20,7 +21,15 @@ public class EmailValidator {
                 atCounter++;
             }
         }
-        return alpha && !wrongAlpha && atCounter==1;
+        String afterAt = userEmail.substring(userEmail.lastIndexOf("@")+1);
+        for (int i=0; i < afterAt.length(); i++) {
+            char c = afterAt.charAt(i);
+            if (c == '.') {
+                period = true;
+                break;
+            }
+        }
+        return period && alpha && !wrongAlpha && atCounter==1;
     }
 
 }
