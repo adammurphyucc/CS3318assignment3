@@ -6,6 +6,8 @@ public class EmailValidator {
     private static boolean wrongAlpha;
     private static boolean period;
     private static boolean domain;
+    private static boolean prefix;
+    private static String [] splitEmail;
 
 
 
@@ -34,7 +36,11 @@ public class EmailValidator {
         if (afterPeriod.length() >= 2){
             domain = true;
         }
-        return domain && period && alpha && !wrongAlpha && atCounter==1;
+        splitEmail =  userEmail.split("@");
+        if(splitEmail[0].length() > 0){
+            prefix = true;
+        }
+        return prefix && domain && period && alpha && !wrongAlpha && atCounter==1;
     }
 
 }
