@@ -8,6 +8,7 @@ public class EmailValidator {
     private static boolean domain;
     private static boolean prefix;
     private static String [] splitEmail;
+    private static boolean hostCheck;
 
 
 
@@ -40,7 +41,11 @@ public class EmailValidator {
         if(splitEmail[0].length() > 0){
             prefix = true;
         }
-        return prefix && domain && period && alpha && !wrongAlpha && atCounter==1;
+        String host = splitEmail[1].substring(splitEmail[1].indexOf("@") + 1, splitEmail[1].indexOf("."));
+        if (host.length() > 0){
+            hostCheck = true;
+        }
+        return hostCheck && prefix && domain && period && alpha && !wrongAlpha && atCounter==1;
     }
 
 }
